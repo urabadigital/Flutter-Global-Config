@@ -14,8 +14,8 @@ void main() {
     final Map<String, String> config2 = {"key3": "value3", "key4": "value4"};
     GlobalConfiguration().loadFromMap(config1);
     GlobalConfiguration().loadFromMap(config2);
-    expect(GlobalConfiguration().getString("key1"), "value1");
-    expect(GlobalConfiguration().getString("key3"), "value3");
+    expect(GlobalConfiguration().getValue("key1"), "value1");
+    expect(GlobalConfiguration().getValue("key3"), "value3");
   });
 
   test('Testing get value for key.', () {
@@ -54,14 +54,14 @@ void main() {
     GlobalConfiguration().loadFromMap(config1);
 
     GlobalConfiguration().updateValue("hello", "world!");
-    expect(GlobalConfiguration().getString("hello"), "world!");
+    expect(GlobalConfiguration().getValue("hello"), "world!");
     GlobalConfiguration().updateValue("foo", 321);
-    expect(GlobalConfiguration().getInt("foo"), 321);
+    expect(GlobalConfiguration().getValue("foo"), 321);
 
     try {
       GlobalConfiguration().updateValue("foo", "321");
     } catch (e) {
-      expect(GlobalConfiguration().getInt("foo"), 321);
+      expect(GlobalConfiguration().getValue("foo"), 321);
       return;
     }
     fail("Expected Exception!");
@@ -80,7 +80,7 @@ void main() {
     try {
       GlobalConfiguration().updateValue("foo", "321");
     } catch (e) {
-      expect(GlobalConfiguration().getInt("foo"), 321);
+      expect(GlobalConfiguration().getValue("foo"), 321);
       return;
     }
     fail("Expected Exception!");
@@ -92,7 +92,7 @@ void main() {
     GlobalConfiguration().loadFromMap(config1);
 
     GlobalConfiguration().updateValue("foo", 321);
-    expect(GlobalConfiguration().getInt("foo"), 321);
+    expect(GlobalConfiguration().getValue("foo"), 321);
   });
 
   test('Testing update null value.', () async {
@@ -107,7 +107,7 @@ void main() {
   test('Testing addValue', () async {
     GlobalConfiguration().clear();
     GlobalConfiguration().addValue("hello", "world");
-    expect(GlobalConfiguration().getString("hello"), "world");
+    expect(GlobalConfiguration().getValue("hello"), "world");
   });
 
   test('Testing addValue', () async {
